@@ -1,0 +1,24 @@
+import {Entity, PrimaryGeneratedColumn, Column, Generated} from "typeorm"
+
+@Entity()
+export class PlayerEntity {
+
+  @PrimaryGeneratedColumn()
+  id: number
+
+  @Column()
+  @Generated("uuid")
+  public uuid: string
+
+  @Column({ nullable: true })
+  firstName: string
+
+  @Column({ nullable: true })
+  lastName: string
+
+  @Column()
+  email: string
+
+  @Column()
+  password: string
+}
