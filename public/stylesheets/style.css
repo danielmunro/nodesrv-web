@@ -1,8 +1,18 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14pt "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+p.nav {
+  font-size: 18pt;
+  display: inline;
+  margin: 0 15px 0 0;
+}
+
+p.nav a {
+  text-decoration: none;
 }

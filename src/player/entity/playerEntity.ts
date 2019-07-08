@@ -23,6 +23,12 @@ export class PlayerEntity {
   @Column()
   password: string
 
+  @Column()
+  kills: number
+
+  @Column()
+  deaths: number
+
   @OneToMany(() => MobEntity, mob => mob.player)
   mobs: MobEntity[]
 }

@@ -16,6 +16,8 @@ export default class PlayerCreateConsumer implements KafkaConsumer {
     playerEntity.email = player.email
     playerEntity.password = player.password
     playerEntity.uuid = player.uuid
+    playerEntity.kills = 0
+    playerEntity.deaths = 0
     console.log("creating player", playerEntity)
     await this.playerService.savePlayer(playerEntity)
   }

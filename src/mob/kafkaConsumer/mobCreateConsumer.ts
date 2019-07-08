@@ -15,14 +15,15 @@ export default class MobCreateConsumer implements KafkaConsumer {
 
   public async consume({topic, partition, message}): Promise<void> {
     const data = JSON.parse(message.value.toString())
-    const player = await this.playerService.getPlayer(data.player.uuid)
     const mobEntity = new MobEntity()
-    mobEntity.player = player
+    if (data.player) {
+      mobEntity.player = await this.playerService.getPlayer(data.player.uuid)
+    }
     mobEntity.uuid = data.uuid
     mobEntity.race = data.raceType
     mobEntity.specialization = data.specializationType
     mobEntity.level = data.level
     await this.mobService.saveMob(mobEntity)
-    console.log("creating player", mobEntity)
+    console.log("creating mob", mobEntity)
   }
 }

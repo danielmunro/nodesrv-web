@@ -1,13 +1,24 @@
-var createError = require('http-errors');
+import createError from "http-errors"
+import {createContainer} from "./src/container/containerFactory"
+import {Types} from "./src/container/types"
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./src/routes');
+var playersRouter = require('./src/routes/players');
 
 var app = express();
+var container
+
+app.use(async (req, res, next) => {
+  if (!container) {
+    container = await createContainer()
+    await container.get(Types.Connection)
+  }
+  next()
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/players', playersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

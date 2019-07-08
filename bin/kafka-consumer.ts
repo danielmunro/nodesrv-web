@@ -31,7 +31,7 @@ async function run() {
 
   const consumerInstances = [
     await createConsumerInstance(new PlayerCreateConsumer(playerService)),
-    await createConsumerInstance(new MobCreateConsumer(mobService, playerService)),
+    // await createConsumerInstance(new MobCreateConsumer(mobService, playerService)),
   ]
   await Promise.all(consumerInstances.map(async consumerInstance => consumerInstance.consumer.run({
     eachMessage: message => consumerInstance.kafkaConsumer.consume(message),
