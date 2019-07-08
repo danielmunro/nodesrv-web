@@ -1,8 +1,8 @@
 import {Container} from "inversify"
-import createConnection from "../db/createConnection"
+import repositories from "./service/repositories"
 
 export async function createContainer(): Promise<Container> {
   const app = new Container()
-  await app.loadAsync(createConnection)
+  await app.loadAsync(repositories)
   return app
 }
