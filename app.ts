@@ -12,15 +12,9 @@ var indexRouter = require('./src/routes');
 var playersRouter = require('./src/routes/players');
 
 var app = express();
-var container
 
-app.use(async (req, res, next) => {
-  if (!container) {
-    container = await createContainer()
-    await container.get(Types.Connection)
-  }
-  next()
-})
+// app.use(connectionMiddleware)
+app.use(containerMiddleware)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,8 +44,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 })
-
-app.use(connectionMiddleware)
-// app.use(containerMiddleware)
 
 module.exports = app
