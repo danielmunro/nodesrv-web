@@ -1,34 +1,40 @@
-import {Entity, PrimaryGeneratedColumn, Column, Generated, OneToMany} from "typeorm"
+import {Column, CreateDateColumn, Entity, Generated, OneToMany, PrimaryGeneratedColumn} from "typeorm"
 import {MobEntity} from "../../mob/entity/mobEntity"
 
 @Entity()
 export class PlayerEntity {
 
   @PrimaryGeneratedColumn()
-  id: number
+  public id: number
 
   @Column()
   @Generated("uuid")
   public uuid: string
 
   @Column({ nullable: true })
-  firstName: string
+  public firstName: string
 
   @Column({ nullable: true })
-  lastName: string
+  public lastName: string
 
   @Column()
-  email: string
+  public email: string
 
   @Column()
-  password: string
+  public password: string
 
   @Column()
-  kills: number
+  public kills: number
 
   @Column()
-  deaths: number
+  public deaths: number
+
+  @CreateDateColumn()
+  public created: string
+
+  @Column("timestamp", { nullable: true })
+  public lastLogin: string
 
   @OneToMany(() => MobEntity, mob => mob.player)
-  mobs: MobEntity[]
+  public mobs: MobEntity[]
 }

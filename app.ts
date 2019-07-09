@@ -1,9 +1,9 @@
-import createError from "http-errors"
-import containerMiddleware from "./src/middleware/containerMiddleware"
-import * as express from "express"
-import * as path from "path"
 import * as cookieParser from "cookie-parser"
+import * as express from "express"
+import createError from "http-errors"
 import * as logger from "morgan"
+import * as path from "path"
+import containerMiddleware from "./src/middleware/containerMiddleware"
 
 import indexRouter from "./src/routes"
 import playersRouter from "./src/routes/players"

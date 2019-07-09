@@ -1,6 +1,6 @@
 import {Container} from "inversify"
-import repositories from "./service/repositories"
 import connection from "./service/connection"
+import repositories from "./service/repositories"
 
 let app: Container
 

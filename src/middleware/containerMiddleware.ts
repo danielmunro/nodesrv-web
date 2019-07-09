@@ -1,5 +1,5 @@
-import {createContainer} from "../container/containerFactory"
 import {Container} from "inversify"
+import {createContainer} from "../container/containerFactory"
 
 let container: Container
 

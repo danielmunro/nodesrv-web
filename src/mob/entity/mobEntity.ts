@@ -1,11 +1,11 @@
-import {Entity, PrimaryGeneratedColumn, Column, Generated, ManyToOne} from "typeorm"
+import {Column, Entity, Generated, ManyToOne, PrimaryGeneratedColumn} from "typeorm"
 import {PlayerEntity} from "../../player/entity/playerEntity"
 
 @Entity()
 export class MobEntity {
 
   @PrimaryGeneratedColumn()
-  id: number
+  public id: number
 
   @Column()
   @Generated("uuid")

@@ -1,9 +1,9 @@
 import * as express from "express"
 import {Repository} from "typeorm"
-import {PlayerEntity} from "../player/entity/playerEntity"
 import {MudName} from "../constants"
 import {getContainer} from "../container/containerFactory"
 import {Types} from "../container/types"
+import {PlayerEntity} from "../player/entity/playerEntity"
 
 const router = express.Router()
 
@@ -13,8 +13,8 @@ router.get("/", async (req, res) => {
 
   res.render("players", {
     players: await playerRepository.find(),
-    title: `${MudName} - Players`,
     playersNav: true,
+    title: `${MudName} - Players`,
   })
 })
 
@@ -25,8 +25,8 @@ router.get("/:uuid", async (req, res) => {
 
   res.render("player", {
     player,
-    title: "Player Details",
     playersNav: true,
+    title: "Player Details",
   })
 })
 

@@ -10,8 +10,8 @@ import PlayerCreateConsumer from "../src/player/kafkaConsumer/playerCreateConsum
 import PlayerService from "../src/player/playerService"
 
 const kafka = new Kafka({
-  clientId: "app",
   brokers: ["localhost:9092"],
+  clientId: "app",
 })
 
 async function createConsumerInstance(kafkaConsumer: KafkaConsumer): Promise<ConsumerInstance> {
@@ -31,7 +31,7 @@ async function run() {
 
   const consumerInstances = [
     await createConsumerInstance(new PlayerCreateConsumer(playerService)),
-    // await createConsumerInstance(new MobCreateConsumer(mobService, playerService)),
+    await createConsumerInstance(new MobCreateConsumer(mobService, playerService)),
   ]
   await Promise.all(consumerInstances.map(async consumerInstance => consumerInstance.consumer.run({
     eachMessage: message => consumerInstance.kafkaConsumer.consume(message),
