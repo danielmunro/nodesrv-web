@@ -1,1 +1,1 @@
-export const MudName = "Yarn of Midgaard"
+export const MudName = "Scrolls of Midgaard"

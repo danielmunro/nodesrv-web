@@ -25,9 +25,9 @@ router.get("/:uuid", async (req, res) => {
 
   res.render("player", {
     player,
-    title: `Player ${player.firstName} ${player.lastName}`,
+    title: "Player Details",
     playersNav: true,
   })
 })
 
-module.exports = router
+export default router
