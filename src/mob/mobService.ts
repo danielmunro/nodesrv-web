@@ -7,4 +7,13 @@ export default class MobService {
   public saveMob(mobEntity: MobEntity) {
     return this.mobRepository.save(mobEntity)
   }
+
+  public async getMob(uuid: string): Promise<MobEntity> {
+    const mob = await this.mobRepository.findOne({ uuid })
+    if (!mob) {
+      throw new Error(`unknown mob uuid: ${uuid}`)
+    }
+
+    return mob
+  }
 }

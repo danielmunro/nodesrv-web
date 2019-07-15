@@ -3,7 +3,7 @@ import {Topic} from "../../kafka/topic"
 import {PlayerEntity} from "../entity/playerEntity"
 import PlayerService from "../playerService"
 
-export default class PlayerCreateConsumer implements KafkaConsumer {
+export default class PlayerConsumer implements KafkaConsumer {
   private static createPlayerEntity(data: any): PlayerEntity {
     const playerEntity = new PlayerEntity()
     playerEntity.email = data.email
@@ -19,15 +19,15 @@ export default class PlayerCreateConsumer implements KafkaConsumer {
 
   public async consume({topic, partition, message}): Promise<void> {
     const player = JSON.parse(message.value.toString())
-    const existingPlayerEntity = await this.playerService.getPlayer(player.uuid)
+    const existingPlayerEntity = await this.playerService.findPlayer(player.uuid)
     const playerEntity = existingPlayerEntity ?
       existingPlayerEntity :
-      PlayerCreateConsumer.createPlayerEntity(player)
+      PlayerConsumer.createPlayerEntity(player)
     playerEntity.password = player.password
     playerEntity.kills = player.kills
     playerEntity.deaths = player.deaths
     playerEntity.lastLogin = player.lastLogin
-    console.log("player consumer", { data: player, playerEntity })
     await this.playerService.savePlayer(playerEntity)
+    console.log(`consume player -- ${playerEntity.uuid}`)
   }
 }

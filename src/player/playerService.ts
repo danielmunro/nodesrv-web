@@ -8,12 +8,7 @@ export default class PlayerService {
     return this.playerRepository.save(playerEntity)
   }
 
-  public async getPlayer(uuid: string): Promise<PlayerEntity> {
-    const player = await this.playerRepository.findOne({ uuid })
-    if (!player) {
-      throw new Error(`unknown player uuid: ${uuid}`)
-    }
-
-    return player
+  public async findPlayer(uuid: string): Promise<PlayerEntity> {
+    return this.playerRepository.findOne({ uuid })
   }
 }

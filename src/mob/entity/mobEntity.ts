@@ -20,6 +20,6 @@ export class MobEntity {
   @Column()
   public level: number
 
-  @ManyToOne(() => PlayerEntity, player => player.mobs)
+  @ManyToOne(() => PlayerEntity, player => player.mobs, { eager: true })
   public player: PlayerEntity
 }
